@@ -1,6 +1,6 @@
 export const formatDate = (dateStr) => {
   const date = new Date(dateStr)
-  const isValidDate = (date) => date instanceof Date && !isNaN(date);
+  const isValidDate = (date) => date instanceof Date && !isNaN(date) && date.getFullYear()>=1980 && date<= new Date()
   if (isValidDate(date)) {
     const ye = new Intl.DateTimeFormat('fr', { year: 'numeric' }).format(date)
     const mo = new Intl.DateTimeFormat('fr', { month: 'short' }).format(date)
@@ -21,5 +21,16 @@ export const formatStatus = (status) => {
       return "Accepté"
     case "refused":
       return "Refused"
+  }
+}
+
+export const formatDateForSort = (dateStr) => {
+  const date = new Date(dateStr)
+  const isValidDate = (date) => date instanceof Date && !isNaN(date) && date.getFullYear()>=1980 && date<= new Date();
+  if (isValidDate(date)) {
+    return date
+  }
+  else {
+    return 0
   }
 }

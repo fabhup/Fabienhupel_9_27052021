@@ -30,9 +30,6 @@ export default class NewBill {
           this.fileName = fileName
         })
     }
-    else {
-      console.log("Seuls les formats d'images suivants sont acceptés : .jpg, .jpeg, .png")
-    }
   }
   handleSubmit = e => {
     e.preventDefault()

@@ -43,6 +43,9 @@ export default () => {
       })
     } else if (pathname === ROUTES_PATH['NewBill']) {
       rootDiv.innerHTML = ROUTES({ pathname, loading: true })
+      const datepicker = document.querySelector(`input[data-testid="datepicker"]`)
+      datepicker.setAttribute('max', (new Date()).toISOString().split('T')[0]) // set max datepicker to today to avoid possibility to create bills with invalid date
+      datepicker.setAttribute('min', (new Date(Date.UTC(new Date().getFullYear()-2, 0, 1))).toISOString().split('T')[0]) // set min datepicker to 01/01/Y-2 to avoid possibility to create bills before this date
       new NewBill({ document, onNavigate, firestore, localStorage })
       const divIcon1 = document.getElementById('layout-icon1')
       const divIcon2 = document.getElementById('layout-icon2')

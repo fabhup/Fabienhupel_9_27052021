@@ -37,12 +37,12 @@ export default class {
       .get()
       .then(snapshot => { 
         const bills = snapshot.docs
-          .sort((a,b) => formatDateForSort(a.data().date) > formatDateForSort(b.data().date) ? -1 : 1)
           .map(doc => {
             try {
               return {
                 ...doc.data(),
                 date: formatDate(doc.data().date),
+                dateForSort: formatDateForSort(doc.data().date),
                 status: formatStatus(doc.data().status),
               };
             } catch(e) {
@@ -52,6 +52,7 @@ export default class {
               return {
                 ...doc.data(),
                 date: doc.data().date,
+                dateForSort: formatDateForSort(doc.data().date),
                 status: formatStatus(doc.data().status)
               }
             }
